@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/lhcbstyle-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/lhcbstyle-{{ version }}.tar.gz
   sha256: 8e385afb6eb8afea177e6801d334cc855e774983cba48d9c1135a3fda96ead2d
 
 build:
-  number: 0
+  number: 1
   noarch: python
   # lhcbstyle doesn't link to ROOT so there is no need to constrain the runtime version
   ignore_run_exports:
@@ -25,10 +25,10 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.7
+    - python {{ python_min }}
     - root_base
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - root_base
 
 test:
@@ -39,6 +39,7 @@ test:
     - lhcbstyle --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://gitlab.cern.ch/lhcb-docs/lhcbstyle
