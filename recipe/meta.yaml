@@ -27,6 +27,7 @@ requirements:
     - pip
     - python {{ python_min }}
     - root_base
+    - setuptools
   run:
     - python >={{ python_min }}
     - root_base
